@@ -5,7 +5,7 @@
 ## Login   <devill_x@epitech.net>
 ## 
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Fri Jan 24 15:40:41 2014 Xavier Devilliers
+## Last update Fri Jan 24 16:12:39 2014 Xavier Devilliers
 ##
 
 ########################################################################
@@ -15,7 +15,7 @@
 ##################
 ## 	debug
 
-DEBUG=			yes
+DEBUG=			no
 INFO=			yes
 
 ##################
@@ -30,9 +30,9 @@ CC=			g++
 
 ifeq ($(DEBUG),yes)
 CFLAGS +=		-ggdb -g3
-CFLAGS +=		-DDEBUG=1
+CFLAGS +=		-DDEBUG_=1
 else
-CFLAGS +=		-DDEBUG=0
+CFLAGS +=		-DDEBUG_=0
 CFLAGS +=		-Werror
 endif
 
