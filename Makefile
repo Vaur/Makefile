@@ -5,7 +5,7 @@
 ## Login   <devill_x@epitech.net>
 ## 
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Fri Jan 24 15:19:15 2014 Xavier Devilliers
+## Last update Fri Jan 24 15:26:43 2014 Xavier Devilliers
 ##
 
 ########################################################################
@@ -185,8 +185,7 @@ buildrepo:
 git:			fclean
 			$(E) "$(D_IN)Sending files\t$(D_OUT)"
 			$(E) "$(C_IN)- commit msg: $(C_OUT)"
-			read -p msg
-			git commit -am $msg
+			read msg && git commit -a -m $$msg
 
 ##################
 ## 	.PHONY
