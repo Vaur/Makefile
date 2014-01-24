@@ -1,0 +1,195 @@
+##
+## Makefile for my_cat in /home/devill_x/rendu/piscine_cpp_d06/ex00
+## 
+## Made by Xavier Devilliers
+## Login   <devill_x@epitech.net>
+## 
+## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
+## Last update Fri Jan 24 15:08:32 2014 Xavier Devilliers
+##
+
+########################################################################
+##				Variable
+########################################################################
+
+##################
+## 	debug
+
+DEBUG=			yes
+INFO=			yes
+
+##################
+## 	commande
+
+AR=			ar rc
+RM=			rm -f
+CC=			g++
+VLC=			cvlc --verbose=0
+VLC_Q=			vlc://quit 2> /dev/null
+VLC_D=			~/
+
+##################
+## 	Flags
+
+ifeq ($(DEBUG),yes)
+CFLAGS +=		-ggdb -g3
+CFLAGS +=		-DDEBUG=1
+else
+CFLAGS +=		-DDEBUG=0
+CFLAGS +=		-Werror
+endif
+
+CFLAGS += 		-Wextra -Wall
+CFLAGS += 		-I./include
+
+LDFLAGS +=
+
+##################
+## 	Src
+
+NAME =			ex00
+COM=			$(shell git log -n1 --format="%s")
+VER =			$(shell git log -n1 --format="%h")
+AUT=			$(shell git log -n1 --format="%cN")
+ifeq ($(VER),exported)
+	VER =		1.0
+endif
+
+D_SRC =			./src/
+D_OBJ = 		./obj/
+
+SD_SRC=			$(shell cd $(D_SRC) && find . -type d | uniq)
+
+SRC=		 	main.cpp
+OBJ =			$(SRC:.cpp=.o)
+
+CSRC =			$(addprefix $(D_SRC),$(SRC))
+COBJ =			$(addprefix $(D_OBJ),$(OBJ))
+
+##################
+## 	display
+##
+##	simple fancy display
+
+ifeq ($(DEBUG),yes)
+C_IN=			\E[31m\033[1m
+else
+C_IN=			\E[32m\033[1m
+endif
+C_OUT=			\033[0m
+D_IN=			$(C_IN)==\t
+D_OUT=			\t==$(C_OUT)
+E=			@echo -e
+SEP=			----------------------------------
+
+########################################################################
+##				Target
+########################################################################
+
+############################
+##	compilation
+
+all:			disp_init buildrepo $(NAME)
+ifeq ($(INFO),yes)
+			$(E)  "$(D_IN)Commit by $(AUT)$(D_OUT)"
+			$(E)  "$(SEP)"
+			$(E)  "$(C_IN)- msg: $(C_OUT)$(COM)"
+			$(E)  "$(SEP)"
+endif
+ifeq ($(DEBUG),yes)
+			$(E)  "$(D_IN)DEBUG MODE\t$(D_OUT)"
+endif
+			$(E)  "$(D_IN)$(NAME) ready for use$(D_OUT)"
+			$(E)  "$(SEP)"
+##################
+## 	Binary
+##
+## DO NOT MODIFY
+## to add library when linkage, modify LDFLAGS variable
+
+$(NAME):		$(COBJ)
+			$(E)  "$(D_IN)Compilation over$(D_OUT)"
+			$(E)  "$(D_IN)Linkage in progress$(D_OUT)"
+			@$(CC) $(COBJ) -o $(NAME) $(LD_FLAGS)
+			$(E)  "$(D_IN)Linkage Over\t$(D_OUT)"
+
+##################
+## 	create Object
+
+$(D_OBJ)%.o:		$(D_SRC)%.cpp
+			@$(CC) $(CFLAGS) -c $< -o $@ || (($(VLC) $(VLC_D)no.mp3 $(VLC_Q) ) && false)
+			$(E) "$(C_IN)-$(C_OUT) Compiling $(C_IN)`echo $<| sed 's/src/ /g' | tr '/' '\t' `$(C_OUT)"
+##################
+## 	remove Object
+
+clean:
+			$(E)  "$(D_IN)Cleaning .o\t$(D_OUT)"
+			$(RM) $(COBJ)
+			$(E)  "$(SEP)"
+##################
+## 	remove Binary
+
+fclean:			clean
+			$(E)  "$(D_IN)Deleting $(NAME)\t$(D_OUT)"
+			$(RM) $(NAME)
+			$(RM) -r $(D_OBJ)
+			find . -name '*~' -delete
+			find . -name '#*#' -delete
+			$(E)  "$(SEP)"
+
+##################
+##	remove and recompile
+
+re:			fclean all
+
+############################################
+## 	utilities
+
+##################
+##	display
+
+disp_init:
+			$(E)  "$(SEP)"
+			$(E)  "$(D_IN)$(NAME) by devill_x$(D_OUT)"
+			$(E)  "$(D_IN)Version: $(VER)$(D_OUT)"
+
+##################
+##  switch between modes
+
+debug:
+			$(E) "$(D_IN)Switching from\t$(D_OUT)"
+ifeq ($(DEBUG),yes)
+			$(E) "$(D_IN)Debug Mode\t$(D_OUT)"
+			@sed -i -e '/(sed)/!s/DEBUG=			yes/DEBUG=			no/' Makefile >> Makefile
+			$(E) "$(D_IN)To: Normal Mode\t$(D_OUT)"
+else
+			$(E) "$(D_IN) Normal Mode\t$(D_OUT)"
+			@sed -i -e '/(sed)/!s/DEBUG=			no/DEBUG=			yes/' Makefile >> Makefile
+			$(E) "$(D_IN)To: Debug Mode\t$(D_OUT)"
+endif
+			@make --no-print-directory re
+
+##################
+##	build directories
+##	for obj
+
+buildrepo:
+			$(E)  "$(D_IN)Checking repository$(D_OUT)"
+			@mkdir -p $(D_OBJ)
+			@for dir in $(SD_SRC); \
+			do \
+			if [ ! -d "$(D_OBJ)$$dir" ];then \
+				mkdir -p $(D_OBJ)$$dir; \
+			fi \
+			done
+
+##################
+##	commit
+svn:			fclean
+			$(E) "$(D_IN)Sending files\t$(D_OUT)"
+			svn commit
+
+##################
+## 	.PHONY
+
+.PHONY:			re clean fclean all fclean buildrepo disp_init
