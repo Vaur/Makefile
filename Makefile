@@ -5,7 +5,7 @@
 ## Login   <devill_x@epitech.net>
 ## 
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Fri Jan 24 15:27:24 2014 Xavier Devilliers
+## Last update Fri Jan 24 15:33:34 2014 Xavier Devilliers
 ##
 
 ########################################################################
@@ -190,4 +190,4 @@ git:			fclean
 ##################
 ## 	.PHONY
 
-.PHONY:			re clean fclean all fclean buildrepo disp_init git
+.PHONY:			re clean fclean all fclean buildrepo disp_init git debug
