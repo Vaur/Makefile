@@ -5,7 +5,7 @@
 ## Login   <devill_x@epitech.net>
 ## 
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Fri Jan 24 15:08:32 2014 Xavier Devilliers
+## Last update Fri Jan 24 15:14:51 2014 Xavier Devilliers
 ##
 
 ########################################################################
@@ -24,9 +24,6 @@ INFO=			yes
 AR=			ar rc
 RM=			rm -f
 CC=			g++
-VLC=			cvlc --verbose=0
-VLC_Q=			vlc://quit 2> /dev/null
-VLC_D=			~/
 
 ##################
 ## 	Flags
@@ -185,11 +182,11 @@ buildrepo:
 
 ##################
 ##	commit
-svn:			fclean
+git:			fclean
 			$(E) "$(D_IN)Sending files\t$(D_OUT)"
-			svn commit
+			git commit -am \"
 
 ##################
 ## 	.PHONY
 
-.PHONY:			re clean fclean all fclean buildrepo disp_init
+.PHONY:			re clean fclean all fclean buildrepo disp_init git
