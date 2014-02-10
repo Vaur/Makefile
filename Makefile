@@ -5,7 +5,7 @@
 ## Login   <devill_x@epitech.net>
 ## 
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Fri Jan 24 16:12:39 2014 Xavier Devilliers
+## Last update Mon Feb 10 14:50:17 2014 Xavier Devilliers
 ##
 
 ########################################################################
@@ -107,7 +107,7 @@ endif
 $(NAME):		$(COBJ)
 			$(E)  "$(D_IN)Compilation over$(D_OUT)"
 			$(E)  "$(D_IN)Linkage in progress$(D_OUT)"
-			@$(CC) $(COBJ) -o $(NAME) $(LD_FLAGS)
+			@$(CC) $(COBJ) -o $(NAME) $(LDFLAGS)
 			$(E)  "$(D_IN)Linkage Over\t$(D_OUT)"
 
 ##################
