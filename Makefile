@@ -5,7 +5,7 @@
 ## Login   <devill_x@epitech.net>
 ##
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Mon Feb 17 11:34:25 2014 devill_x
+## Last update Mon Feb 17 13:37:45 2014 devill_x
 ##
 
 ########################################################################
@@ -120,7 +120,7 @@ $(NAME):		$(COBJ)
 ## 	create Object
 
 $(D_OBJ)%.o:		$(D_SRC)%.cpp
-			@$(CC) $(CFLAGS) -c $< -o $@ || (($(VLC) $(VLC_D)no.mp3 $(VLC_Q) ) && false)
+			@$(CC) $(CFLAGS) -c $< -o $@
 			$(E) "$(C_IN)-$(C_OUT) Compiling $(C_IN)`echo $<| sed 's/src/ /g' | tr '/' '\t' `$(C_OUT)"
 ##################
 ## 	remove Object
