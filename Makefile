@@ -1,11 +1,11 @@
 ##
 ## Makefile for my_cat in /home/devill_x/rendu/piscine_cpp_d06/ex00
-## 
+##
 ## Made by Xavier Devilliers
 ## Login   <devill_x@epitech.net>
-## 
+##
 ## Started on  Mon Jan 13 08:15:23 2014 Xavier Devilliers
-## Last update Mon Feb 10 14:50:17 2014 Xavier Devilliers
+## Last update Mon Feb 17 11:34:25 2014 devill_x
 ##
 
 ########################################################################
@@ -17,6 +17,12 @@
 
 DEBUG=			no
 INFO=			yes
+
+##################
+## 	detect system
+
+HOSTTYPE=		${shell arch}
+ARCH=			${HOSTTYPE}_arity
 
 ##################
 ## 	commande
