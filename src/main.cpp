@@ -5,7 +5,7 @@
 // Login   <devill_x@epitech.net>
 //
 // Started on  Wed Jan 22 13:45:37 2014 Xavier Devilliers
-// Last update Wed Jan 22 13:48:11 2014 Xavier Devilliers
+// Last update Mon Feb 17 13:49:54 2014 devill_x
 //
 
 /*
@@ -14,7 +14,11 @@
 
 #include	<string>
 #include	<iostream>
-#include	"debug.h"
+#include	"debug.hpp"
+
+/*
+** Functions
+*/
 
 void	test()
 {
