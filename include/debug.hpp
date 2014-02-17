@@ -5,7 +5,7 @@
 // Login   <devill_x@epitech.net>
 //
 // Started on  Wed Jan 22 13:41:35 2014 Xavier Devilliers
-// Last update Mon Feb 17 13:40:23 2014 devill_x
+// Last update Mon Feb 17 13:49:31 2014 devill_x
 //
 
 #ifndef		DEBUG_H
@@ -27,8 +27,8 @@
 */
 
 # define	debug(msg)	if (DEBUG_ == 1)			\
-    std::cout <<  RED << __FILE__ <<	WHI <<				\
-      ": " << RED <<  __LINE__  << WHI << msg <<			\
-      std::endl;
+		std::cout <<  RED << __FILE__ <<	WHI <<		\
+		": " << RED <<  __LINE__  << WHI << msg <<		\
+		std::endl;
 
 #endif      /* !DEBUG_H_ */
